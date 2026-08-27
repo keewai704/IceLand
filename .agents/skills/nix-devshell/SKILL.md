@@ -8,7 +8,7 @@ description: Maintain IceLand flake.nix, flake.lock, direnv integration, Nix dev
 ## Invariants
 
 - Support `x86_64-linux` and `aarch64-linux` unless a dependency makes that impossible and the limitation is documented.
-- Pin Quickshell through the flake input and make its `nixpkgs` input follow the repository `nixpkgs` input.
+- Use `pkgs.quickshell` from the repository’s locked nixpkgs input. Add an upstream Quickshell input only for an intentional unreleased-version test.
 - Put every required formatter, linter, runtime helper, and diagnostic command in the devshell.
 - Keep Vulkan as the default RHI through environment configuration, while allowing caller overrides.
 - Do not hide host-specific setup in shell aliases or untracked files.

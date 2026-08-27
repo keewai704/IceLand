@@ -1,21 +1,10 @@
 {
   description = "IceLand Quickshell development environment";
 
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    quickshell = {
-      url = "github:quickshell-mirror/quickshell?ref=v0.3.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
   outputs =
-    {
-      nixpkgs,
-      quickshell,
-      ...
-    }:
+    { nixpkgs, ... }:
     let
       systems = [
         "x86_64-linux"
@@ -28,7 +17,7 @@
         system:
         let
           pkgs = import nixpkgs { inherit system; };
-          qs = quickshell.packages.${system}.default;
+          qs = pkgs.quickshell;
           qt = pkgs.kdePackages;
         in
         {
