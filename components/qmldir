@@ -1,0 +1,5 @@
+module qs.components
+IslandWindow 1.0 IslandWindow.qml
+IslandSurface 1.0 IslandSurface.qml
+IdleContent 1.0 IdleContent.qml
+ActivityContent 1.0 ActivityContent.qml

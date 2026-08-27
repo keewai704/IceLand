@@ -1,0 +1,2 @@
+module qs.core
+singleton ActivityController 1.0 ActivityController.qml
