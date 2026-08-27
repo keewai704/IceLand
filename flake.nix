@@ -36,7 +36,7 @@
 
               pkgs.shellcheck
               pkgs.shfmt
-              pkgs.nixfmt-rfc-style
+              pkgs.nixfmt
 
               pkgs.vulkan-tools
               pkgs.vulkan-validation-layers
@@ -51,15 +51,14 @@
             shellHook = ''
               export ICELAND_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
               export ICELAND_QS_QML_PATH="${qs}/lib/qt-6/qml"
+              export ICELAND_QT_QML_PATH="${qt.qtdeclarative}/lib/qt-6/qml"
+              export ICELAND_QTBASE_QML_PATH="${qt.qtbase}/lib/qt-6/qml"
               export QSG_RHI_BACKEND="''${QSG_RHI_BACKEND:-vulkan}"
               export QT_QPA_PLATFORM="''${QT_QPA_PLATFORM:-wayland}"
               export QMLLS_BUILD_DIRS="$ICELAND_ROOT"
               export QMLLS_NO_CMAKE_CALLS=1
-
-              if [ -d "$ICELAND_QS_QML_PATH" ]; then
-                export QML_IMPORT_PATH="$ICELAND_QS_QML_PATH''${QML_IMPORT_PATH:+:$QML_IMPORT_PATH}"
-                export QML2_IMPORT_PATH="$QML_IMPORT_PATH"
-              fi
+              export QML_IMPORT_PATH="$ICELAND_QS_QML_PATH:$ICELAND_QT_QML_PATH:$ICELAND_QTBASE_QML_PATH''${QML_IMPORT_PATH:+:$QML_IMPORT_PATH}"
+              export QML2_IMPORT_PATH="$QML_IMPORT_PATH"
 
               if [ ! -e "$ICELAND_ROOT/.qmlls.ini" ]; then
                 touch "$ICELAND_ROOT/.qmlls.ini"
@@ -72,6 +71,6 @@
         }
       );
 
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt);
     };
 }

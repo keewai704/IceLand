@@ -10,7 +10,7 @@ The order is based on architectural leverage, not feature novelty.
 - [x] Idle clock
 - [x] Generic priority-aware IPC Activity
 - [x] Compact and expanded geometry
-- [ ] Commit and maintain `flake.lock`
+- [x] Commit and maintain `flake.lock`
 - [ ] Validate on Hyprland with multiple scale factors
 
 ## Phase 1: core desktop feedback

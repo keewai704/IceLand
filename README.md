@@ -33,10 +33,11 @@ direnv allow
 just dev
 ```
 
-初回は依存関係を固定するため、生成された `flake.lock` をコミットしてください。
+`flake.lock` はコミット済みです。依存入力を意図的に更新するときだけ、次を実行して差分を確認します。
 
 ```bash
 just lock
+git diff -- flake.lock
 ```
 
 ## デモ

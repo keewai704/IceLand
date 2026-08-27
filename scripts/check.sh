@@ -7,7 +7,7 @@ cd "$root"
 required_commands=(qmlformat qmllint shellcheck shfmt nixfmt)
 for command_name in "${required_commands[@]}"; do
   if ! command -v "$command_name" >/dev/null 2>&1; then
-    printf 'Missing required command: %s. Enter `nix develop`.\n' "$command_name" >&2
+    printf 'Missing required command: %s. Enter the Nix devshell first.\n' "$command_name" >&2
     exit 1
   fi
 done
